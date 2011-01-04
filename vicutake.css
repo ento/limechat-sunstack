@@ -1,0 +1,955 @@
+@charset "UTF-8";
+
+/*
+limechat.Vicuna
+ver.0.8
+http://3ping.org/2009/08/01/0208
+
+modified by @DNPP/@dnpp73/Yusuke SUGAMIYA
+
+オリジナルを元に自分が使う用に色々書き換えてみました。作者の方に感謝しつつ。
+TIG+tiarraの環境でTIGチャンネルに"@T"が含まれてるかどうかで切り替わります。
+色の番号を15指定すると div 要素になって、あたかも改行されてるかのように表示してるので、TIGのDLRなりfilterなりで改行コードを "\x0315 \x03" に置換するといいかも。
+インラインに展開される画像をマウスオーバーで拡大するようにしたりもしてみました。
+*/
+
+html {
+	margin: 0;
+	padding-bottom: 0;
+	color: #000;
+}
+
+body {
+	margin: 0 3px;
+	font-family: 'Lucida Grande';
+	font-size: 9.3pt;
+	background-image: url(vicutake/images/bg.png);
+}
+
+div,
+span {
+	-webkit-box-sizing: border-box;
+}
+
+/*---------------------------------
+
+	Line
+
+----------------------------------*/
+
+.line {
+	border: 0px solid #eee;
+	position: relative;
+	background-color: #fff;
+	margin: 0px -6px;
+	-webkit-border-top-right-radius: 2px;
+	-webkit-border-bottom-left-radius:2px;
+	line-height: 1.7;
+}
+
+/*---------------------------------
+
+	Inline Image
+
+----------------------------------*/
+
+.inlineimage {
+	display:inline;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-right: 5px;
+	margin-left: 5px;	
+	position: relative;
+	max-width: 700px;
+	max-height: 24px;
+	-webkit-box-shadow: 1px 1px 2px #888;
+}
+
+.inlineimage:hover {
+	position: relative;
+	max-width: 700px;
+	max-height: 9999px;
+	-webkit-box-shadow: 3px 3px 4px #888;
+	
+/*
+	-webkit-animation-name: imageexpansion;
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-delay:0s;
+	-webkit-animation-timing-function: linear;
+*/
+}
+
+/* Anim */
+/*
+@-webkit-keyframes urlexpansion  {
+	0% {
+		-webkit-transform: scale(0.900);
+	}
+	10% {
+		-webkit-transform: scale(1.100);
+	}
+	20% {
+		-webkit-transform: scale(0.927);
+	}
+	30% {
+		-webkit-transform: scale(1.051);
+	}
+	40% {
+		-webkit-transform: scale(0.965);
+	}
+	50% {
+		-webkit-transform: scale(1.021);
+	}
+	60% {
+		-webkit-transform: scale(0.987);
+	}
+	70% {
+		-webkit-transform: scale(1.0027);
+	}
+	80% {
+		-webkit-transform: scale(0.9992);
+	}
+	90% {
+		-webkit-transform: scale(1.0006);
+	}
+	100% {
+		-webkit-transform: scale(1);
+	}
+}
+*/
+
+/*--------------------
+	通常行
+---------------------*/
+
+body[channelname*="@T"] .text[type="privmsg"] {
+	padding: 3px 3em 3px 48px;
+	vertical-align: middle;
+}
+
+body[channelname*="@T"] .text[type="notice"] {
+	padding: 3px 5em 3px 51px;
+	vertical-align: middle;
+}
+
+body[channelname*="@T"] .text[type="notice"][nick="tiarra"] {
+	padding: 3px 25px 3px 6px;
+	vertical-align: middle;
+}
+
+body:not([channelname*="@T"]) .text {
+	padding: 3px 5em 3px 9px;
+	vertical-align: middle;
+}
+
+/*時間*/
+
+.text .time {
+	display: inline-block;
+	padding: 1px;
+	color: #444;
+	font-size: 7.2pt;
+	position: absolute;
+	right: 4px;
+	top: 4px;
+}
+
+body:not([channelname*="@T"]) .text .time {
+	display: inline-block;
+	padding: 1px 2px;
+	color: #444;
+	font-size: 7.2pt;
+	position: absolute;
+	right: 1px;
+	top: 6px;
+}
+
+.text[nick="tiarra"][type="notice"] .time {
+	display: none;
+}
+
+/*--------------------
+	偶数・奇数行
+---------------------*/
+
+.line[alternate="even"] {
+	background-color: #efefef;
+}
+
+.line[alternate="odd"] {
+	
+}
+
+/*--------------------
+	エンター押した時のアニメ
+	(いらない場合は消して)
+---------------------*/
+
+.line:last-child {
+}
+
+/* Anim */
+/*
+@-webkit-keyframes pop {
+	0% {
+			-webkit-transform: translateY(50%);
+	}
+	100% {
+			-webkit-transform: translateY(0);
+			opacity: 1;
+	}
+}
+*/
+
+/*---------------------------------
+
+	Sender (名前)
+
+----------------------------------*/
+
+div[type="prvmsg"] .sender {
+	font-size: 8pt;
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	vertical-align: middle;
+	display: block;
+}
+
+div[type="notice"] .sender {
+	font-size: 7.8pt;
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+body[channelname*="@T"] div[type="notice"] .sender {
+	margin-left: -48px;
+	margin-right: 5px;
+/*
+	position: absolute;
+	left: 3px;
+	top: 2.5px;
+*/
+}
+
+body:not([channelname*="@T"]) .sender {
+	display: block;
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	vertical-align: middle;
+	display: inline;
+}
+
+div[nick="tiarra"] .sender {
+	display: none;
+}
+
+/*--------------------
+	自分の発言
+---------------------*/
+
+.sender[type=myself] {
+	color: #02111a;
+}
+
+/*--------------------
+	他人の発言
+---------------------*/
+
+.sender[type=normal] {
+	color: #084466;
+}
+
+/*--------------------
+	発言順
+---------------------*/
+
+.sender[first=true] {
+}
+
+.sender[first=true] {
+}
+
+.sender[first=false] {
+}
+
+/*---------------------------------
+
+	Avatar
+
+----------------------------------*/
+
+.avatar {
+	display: block;
+	max-height: 32px;
+	max-width: 32px;
+	position: absolute;
+	left: 5px;
+	top: 6px;
+	-webkit-box-shadow: 1px 1px 3px #888;
+
+}
+
+body:not([channelname*="@T"]) .avatar{
+	display: none;
+}
+
+/*---------------------------------
+
+	Message
+
+----------------------------------*/
+
+.message {
+	vertical-align: middle;
+	display: block;
+	padding-right: 6px;
+	padding-left: 8px;
+
+}
+
+body:not([channelname*="@T"]) .message {
+	vertical-align: middle;
+	display: inline;
+	padding-right: 9px;
+	padding-left: 3px;
+}
+
+.message[type="notice"] {
+	font-size: 8.8pt;
+	vertical-align: middle;
+	display: inline;
+	padding-right: 4px;
+	padding-left: 4px;
+
+}
+
+/*---------------------------------
+
+	色変えると要素が付くのを利用して、改行などをしてみる
+
+----------------------------------*/
+
+body[channelname*="@T"] .message[type="privmsg"] .effect[color-number="15"] {
+	display: block;
+	/*visibility: hidden;
+	width: 1px;
+	height: 1px;*/
+	margin: 0px;
+	padding: 0px;
+	/*color: black;*/
+}
+
+/*--------------------
+	Class
+---------------------*/
+
+.url {
+	display: inline-block;
+	color: #669900;
+	/*font-weight: bold;*/
+	text-decoration:none;
+	word-break: break-all;
+}
+
+.url:hover {
+	color: #CC3300;
+	/*font-weight: bold;*/
+	text-decoration:underline;
+/*
+	-webkit-animation-name: urlexpansion;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: cubic-bezier(0.5,0,0.5,1);
+*/
+}
+
+/* Anim */
+/*
+@-webkit-keyframes urlexpansion  {
+	0% {
+		-webkit-transform: scale(0.900);
+	}
+	10% {
+		-webkit-transform: scale(1.100);
+	}
+	20% {
+		-webkit-transform: scale(0.927);
+	}
+	30% {
+		-webkit-transform: scale(1.051);
+	}
+	40% {
+		-webkit-transform: scale(0.965);
+	}
+	50% {
+		-webkit-transform: scale(1.021);
+	}
+	60% {
+		-webkit-transform: scale(0.987);
+	}
+	70% {
+		-webkit-transform: scale(1.0027);
+	}
+	80% {
+		-webkit-transform: scale(0.9992);
+	}
+	90% {
+		-webkit-transform: scale(1.0006);
+	}
+	100% {
+		-webkit-transform: scale(1);
+	}
+}
+*/
+
+.url:before {
+}
+
+.url[href$='.gif']:after,
+.url[href$='.jpg']:after,
+.url[href$='.png']:after,
+.url[href$='.bmp']:after {
+}
+
+/*nannde kikanai*/
+
+.url[href$='.txt']:after,
+.url[href$='.css']:after,
+.url[href$='.js']:after,
+.url[href$='.xml']:after {
+}
+
+.place {
+	color: #cccccc;
+}
+
+.address {
+	text-decoration:none;
+	word-break: break-all;
+}
+
+/*---------------------------------
+
+	Events
+
+----------------------------------*/
+
+.event[type] {
+	padding: 4px 4em 4px 33px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(255,255,255,0.4) rgba(255,255,255,0.3) rgba(255,255,255,0.3) rgba(255,255,255,0.3);
+	background-color: #d5f8e1;
+	background-image: url(vicutake/images/or_light1.png);
+	background-repeat: repeat-x;	
+	font-size: 8pt;
+	text-shadow: -1px -1px 0 rgba(200,200,200,0.4);
+	-webkit-border-radius: 2px;
+	-webkit-box-shadow: 1px 2px 2px rgba(200,200,200,0.4);
+	min-height: 25px;
+}
+
+.event .message {
+	color: #707070;
+}
+
+.event:before {
+	padding: 5px 4px 2px;
+	content: url(vicutake/famfamfam/cog.png);
+	position: absolute;
+	top: -1px;
+	left: 0;
+	height: 100%;
+	border-right: 1px solid rgba(255,255,255,0.4);
+	background-color: rgba(255,255,255,0.1);
+	background-image: url(vicutake/images/or_aqua1.png);
+	background-repeat: repeat-x;
+	-webkit-border-top-left-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+}
+
+.event + .text {
+}
+
+.text + .event {
+}
+
+/* 時間 */
+
+.line.event .time {
+	display: inline-block;
+	padding: 2px 4px 2px 6px;
+	position: absolute;
+	top: 5px;
+	right: 1px;
+	color: #444;
+	font-size: 7pt;
+}
+
+/* URL */
+
+.event .url {
+	color: rgba(55,55,55, 0.8);
+}
+
+.event .url:hover {
+	color: rgba(55,55,55, 1);
+}
+
+/*---------------------------------
+
+	Event Icon
+
+----------------------------------*/
+
+.event[type="system"]:before {
+	content: url(vicutake/famfamfam/rainbow.png);
+}
+
+.event[type="join"]:before {
+	content: url(vicutake/famfamfam/lightbulb.png);
+}
+
+.event[type="part"]:before,
+.event[type="quit"]:before{
+	content: url(vicutake/famfamfam/lightbulb_off.png);
+}
+
+.event[type="reply"]:before {
+	
+}
+	
+.event[type="nick"]:before {
+	content: url(vicutake/famfamfam/pencil2.png);
+}
+
+.event[type="mode"]:before {
+	content: url(vicutake/famfamfam/cup.png);
+}
+
+.event[type="topic"]:before {
+	content: url(vicutake/famfamfam/bell.png);
+}
+
+/*---------------------------------
+
+	Event Level 2
+
+----------------------------------*/
+
+.event[type="join"],
+.event[type="part"],
+.event[type="quite"] {
+	
+}
+
+.event[type="join"] .message,
+.event[type="part"] .message
+.event[type="quite"] .message {
+	font-size: 8pt;
+}
+
+/*-------------------- 
+	Join
+---------------------*/
+
+.event[type="join"] {
+	background-color: #B3D1F5;
+/*
+	-webkit-animation-name: join;
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-timing-function: cubic-bezier(0.5,0,0.5,1);
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-delay: 0;
+*/
+}
+
+/* Anim */
+/*
+@-webkit-keyframes join {
+	0% {
+		background-color: #B3D1F5;
+		-webkit-transform: perspective(800) scale(0.9) rotateY(90deg);	
+	}
+	50% {
+		background-color: #003ef5;
+		-webkit-transform: perspective(800) scale(0.9) rotateY(0deg);
+	}
+	100% {
+		background-color: #B3D1F5;
+		-webkit-transform: scale(1.0);
+	}
+}
+*/
+
+.event[type="join"] .address {
+	text-decoration: none;
+	color: rgba(100,100,100,0.7);
+}
+
+/*--------------------
+	Quite and Part
+---------------------*/
+
+.event[type="part"],
+.event[type="quit"] {
+	background-color: #eec5be;
+/*
+	-webkit-animation-name: quite;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: ease-out;
+	-webkit-transform: scale(1);
+*/
+}
+
+/* Anim */
+/*
+@-webkit-keyframes quite {
+	0% {
+		background-color: #ff0000;
+	}
+	100% {
+		background-color: #eec5be;
+	}
+}
+*/
+
+/*--------------------
+	Nick
+---------------------*/
+
+.event[type="nick"] {
+	background-color: #dddbf3;
+/*
+	-webkit-animation-name: rotate;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: ease-out;
+*/
+}
+
+/* Anim */
+/*
+@-webkit-keyframes rotate {
+	0% {
+		-webkit-transform: scale(0.9);
+	}
+	33% {
+			-webkit-transform: rotate(2deg);
+			background-color: #A276ED;
+	}
+	66% {
+		-webkit-transform: rotate(-2deg);
+		background-color: #A276ED;
+	}
+	100% {
+		background-color: #dddbf3;
+	}
+}
+*/
+
+/*---------------------------------
+
+	Event Level 1
+
+----------------------------------*/
+
+/*-------------------- 
+	System
+---------------------*/
+
+.event[type="system"] {
+	background-color: #d0d0d0;
+	background-image: url(vicutake/images/or_light2_check1.png)
+}
+
+/* Topic change */
+
+.event[type="topic"] {
+	background-color: #d0fda0;
+}
+
+.event[type="topic"]:nth-last-of-type(1) {
+	
+}
+
+/* reply */
+
+.event[type="reply"] {
+	background-color: #e7e9f0;
+}
+
+/* System */
+
+.event[type="system"] {
+	
+}
+
+/* Error */
+
+.event[type="error"] {
+
+}
+
+/* Reply */
+
+.event[type="reply"] {
+	
+}
+
+
+.event[type="error_reply"] {
+	
+}
+
+/* Send */
+
+.event[type=dcc_send_send] {
+	
+}
+
+.event[type="dcc_send_receive"] {
+	
+}
+
+/* Notice Quite */
+
+.event["type=notice"] {
+	
+}
+
+.line[type="notice"][alternate="odd"] {
+	background-color: #F7F9FC;
+}
+
+.line[type="notice"][alternate="even"] {
+	background-color: #EAF2F9;
+}
+
+.line[type="notice"] + .line[type="notice"] {
+	position: relative;
+}
+
+.line[type="notice"] .message {
+	color: #213342;
+}
+
+
+.line[type="notice"] .message:before {
+}
+
+.line[type="notice"] .message:after {
+}
+
+.line[type="notice"] .sender[first=false] {
+}
+
+/* Action */
+
+.event[type="action"] {
+}
+
+/* Kick Kill */
+
+.event[type="kick"] {
+	
+}
+
+.event[type="kill"] {
+}
+
+/* Nick */
+
+.event[type="nick"] {
+}
+
+/* Mode */
+
+.event[type="mode"] {
+}
+
+/* Send */
+
+.event[type="invite"] {
+}
+
+.event[type="wallops"] {
+}
+
+.event[type="debug_send"] {
+}
+
+.event[type="debug_receive"] {
+}
+
+/*---------------------------------
+
+	Heighlight
+
+----------------------------------*/
+
+.highlight {
+	color: #C90064;
+	font-weight: normal;
+}
+
+.line[highlight="true"][alternate="even"] {
+	background-color: #FFF9F2;
+	border-color: #FFF5CF;
+}
+
+.line[highlight="true"][alternate="odd"] {
+	background-color: #FFFFF4;
+	border-color: #FFF5CF;
+}
+
+/*
+body[type="console"] .line[highlight="true"] .sender {
+	display: inline-block;
+}
+*/
+.line[highlight="true"] .sender {
+	display: inline-block;
+	padding-top: -1px;
+	padding-bottom: -1px;
+	padding-right: 2px;
+	padding-left: 2px;
+	margin-top: -1px;
+	margin-bottom: -1px;
+	margin-right: 2px;
+	margin-left: 2px;
+	background-color: #C90064;
+	font-weight: bold;
+
+	-webkit-box-shadow: 1px 1px 1px #ccc;
+	-webkit-border-radius: 3px;
+
+	-webkit-animation-name: call;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 3;
+	-webkit-animation-timing-function: cubic-bezier(0.5,0,0.5,1);
+
+}
+
+/* Anim */
+
+@-webkit-keyframes call {
+	0% {
+		-webkit-transform: scale(0.900);
+	}
+	10% {
+		-webkit-transform: scale(1.100);
+	}
+	20% {
+		-webkit-transform: scale(0.927);
+	}
+	30% {
+		-webkit-transform: scale(1.051);
+	}
+	40% {
+		-webkit-transform: scale(0.965);
+	}
+	50% {
+		-webkit-transform: scale(1.021);
+	}
+	60% {
+		-webkit-transform: scale(0.987);
+	}
+	70% {
+		-webkit-transform: scale(1.0027);
+	}
+	80% {
+		-webkit-transform: scale(0.9992);
+	}
+	90% {
+		-webkit-transform: scale(1.0006);
+	}
+	100% {
+		-webkit-transform: scale(1);
+	}
+}
+
+
+.line[highlight="true"] .sender {
+	color: #fff!important;
+}
+
+.line[highlight="true"] .message{
+	
+}
+
+/*---------------------------------
+
+	Console
+
+----------------------------------*/
+
+body[type="console"] .event[type],
+body[type="server"] .event[type] {
+	background-image: none;
+	-webkit-border-radius: 0px;
+
+	-webkit-animation-name: none;
+
+	border-color: rgba(255,255,255,0.4) rgba(255,255,255,0.3) rgba(255,255,255,0.3) rgba(255,255,255,0.3);	border-top-color: rgba(255,255,255,0.2);
+	text-shadow: 1px 1px 0 rgba(200,200,200,0.4);
+}
+
+body[type="console"] .event[type]:before,
+body[type="server"] .event[type]:before {
+    background-image: url(vicutake/images/or_shadow1.png);
+    border-color: rgba(200,200,200,0.6);
+    border-bottom: 1px solid rgba(200,200,200,0.6);
+    height: auto;
+	-webkit-border-radius: 0px;
+}
+
+.console .line[highlight="true"] {
+
+	-webkit-animation-name: none;
+
+}
+
+.console .line[highlight="true"] {
+}
+
+.console .line[alternate="odd"]{
+}
+
+.console .line[alternate="even"] {
+}
+
+.console .text {
+	padding-left: 5px;	
+	font-size: 9pt;
+	vertical-align: middle;
+}
+
+.event .place {
+	margin-right: 5px;
+	color: #5151ca;
+	padding: 1px;
+	vertical-align: middle;
+	position: static;
+}
+
+.place {
+	display: inline-block;
+	color: #00007d;
+	font-size: 7pt;
+	vertical-align: middle;
+	position: static;
+}
+
+.console .sender {
+	font-size: 8pt;
+	vertical-align: middle;
+	position: static;
+}

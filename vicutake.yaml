@@ -1,0 +1,61 @@
+# original : http://3ping.org/2009/08/01/0208
+# modified by @DNPP/@dnpp73/Yusuke SUGAMIYA
+#
+# All colors must be in the form of '#rrggbb' or '#rgb'.
+# You cannot use color names.
+ 
+log-view:
+    nickname-format: '%n : '
+    timestamp-format: '%H:%M:%S'
+    scroller-highlight-color: '#f0f'
+ 
+input-text:
+    font-family: 'Lucida Grande'
+    font-size: 13
+    background-color: '#fff'
+    color: '#000'
+    selected:
+        background-color: '#'
+ 
+member-list:
+    font-family: 'Lucida Grande'
+    font-size: 10
+    color: '#333'
+    background-color: '#ebf1f2'
+    operator:
+        color: '#222'
+    selected:
+        color: '#fff'
+        background:
+            # gradient
+            top-line-color: '#555'
+            bottom-line-color: '#555'
+            top-color: '#555'
+            bottom-color: '#555'
+ 
+server-tree:
+    font-family: 'Lucida Grande'
+    font-size: 11
+    background-color: '#ebf1f2'
+    highlight:
+        color: '#f0f'
+    newtalk:
+        color: '#f00'
+    unread:
+        color: '#00f'
+    normal:
+        active:
+            color: '#1F3135'
+        inactive:
+            color: '#888691'
+    selected:
+        active:
+            color: '#00334f'
+        inactive:
+            color: '#0087c6'
+        background:
+            # gradient
+            top-line-color: '#63b2dc'
+            bottom-line-color: '#63b2dc'
+            top-color: '#9bbfd5'
+            bottom-color: '#95c2d5'
