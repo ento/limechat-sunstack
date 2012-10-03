@@ -4,13 +4,8 @@
 limechat.Vicuna
 ver.0.8
 http://3ping.org/2009/08/01/0208
-
 modified by @DNPP/@dnpp73/Yusuke SUGAMIYA
 
-オリジナルを元に自分が使う用に色々書き換えてみました。作者の方に感謝しつつ。
-TIG+tiarraの環境でTIGチャンネルに"@T"が含まれてるかどうかで切り替わります。
-色の番号を15指定すると div 要素になって、あたかも改行されてるかのように表示してるので、TIGのDLRなりfilterなりで改行コードを "\x0315 \x03" に置換するといいかも。
-インラインに展開される画像をマウスオーバーで拡大するようにしたりもしてみました。
 */
 
 html {
@@ -122,26 +117,6 @@ span {
   通常行
 ---------------------*/
 
-body[channelname*="@T"] .text[type="privmsg"] {
-  padding: 3px 3em 3px 48px;
-  vertical-align: middle;
-}
-
-body[channelname*="@T"] .text[type="notice"] {
-  padding: 3px 5em 3px 51px;
-  vertical-align: middle;
-}
-
-body[channelname*="@T"] .text[type="notice"][nick="tiarra"] {
-  padding: 3px 25px 3px 6px;
-  vertical-align: middle;
-}
-
-body:not([channelname*="@T"]) .text {
-  padding: 3px 5em 3px 9px;
-  vertical-align: middle;
-}
-
 /*時間*/
 
 .text .time {
@@ -154,18 +129,10 @@ body:not([channelname*="@T"]) .text {
   top: 4px;
 }
 
-body:not([channelname*="@T"]) .text .time {
-  display: inline-block;
+body .text .time {
   padding: 1px 2px;
-  color: #444;
-  font-size: 7.2pt;
-  position: absolute;
   right: 1px;
   top: 6px;
-}
-
-.text[nick="tiarra"][type="notice"] .time {
-  display: none;
 }
 
 /*--------------------
@@ -227,17 +194,7 @@ div[type="notice"] .sender {
   display: inline-block;
 }
 
-body[channelname*="@T"] div[type="notice"] .sender {
-  margin-left: -48px;
-  margin-right: 5px;
-/*
-  position: absolute;
-  left: 3px;
-  top: 2.5px;
-*/
-}
-
-body:not([channelname*="@T"]) .sender {
+body .sender {
   display: block;
   padding-right: 3px;
   padding-left: 3px;
@@ -245,10 +202,6 @@ body:not([channelname*="@T"]) .sender {
   padding-bottom: 3px;
   vertical-align: middle;
   display: inline;
-}
-
-div[nick="tiarra"] .sender {
-  display: none;
 }
 
 /*--------------------
@@ -297,10 +250,6 @@ div[nick="tiarra"] .sender {
 
 }
 
-body:not([channelname*="@T"]) .avatar{
-  display: none;
-}
-
 /*---------------------------------
 
   Message
@@ -315,36 +264,12 @@ body:not([channelname*="@T"]) .avatar{
 
 }
 
-body:not([channelname*="@T"]) .message {
-  vertical-align: middle;
-  display: inline;
-  padding-right: 9px;
-  padding-left: 3px;
-}
-
 .message[type="notice"] {
   font-size: 8.8pt;
-  vertical-align: middle;
   display: inline;
   padding-right: 4px;
   padding-left: 4px;
 
-}
-
-/*---------------------------------
-
-  色変えると要素が付くのを利用して、改行などをしてみる
-
-----------------------------------*/
-
-body[channelname*="@T"] .message[type="privmsg"] .effect[color-number="15"] {
-  display: block;
-  /*visibility: hidden;
-  width: 1px;
-  height: 1px;*/
-  margin: 0px;
-  padding: 0px;
-  /*color: black;*/
 }
 
 /*--------------------
