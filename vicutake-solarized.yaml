@@ -1,0 +1,51 @@
+---
+  log-view: 
+    nickname-format: "%n : "
+    timestamp-format: "%H:%M:%S"
+    scroller-highlight-color: "#ff00ff"
+  input-text: 
+    font-family: "Lucida Grande"
+    font-size: 13
+    background-color: "#ffffff"
+    color: "#000000"
+    selected: 
+      background-color: "#"
+  member-list: 
+    font-family: "Lucida Grande"
+    font-size: 10
+    color: "#333333"
+    background-color: "#eaf2f9"
+    operator: 
+      color: "#222222"
+    selected: 
+      color: "#ffffff"
+      background: 
+        top-line-color: "#555555"
+        bottom-line-color: "#555555"
+        top-color: "#555555"
+        bottom-color: "#555555"
+  server-tree: 
+    font-family: "Lucida Grande"
+    font-size: 11
+    background-color: "#eaf2f9"
+    highlight: 
+      color: "#ff00ff"
+    newtalk: 
+      color: "#ff0000"
+    unread: 
+      color: "#0000ff"
+    normal: 
+      active: 
+        color: "#1f3135"
+      inactive: 
+        color: "#888691"
+    selected: 
+      active: 
+        color: "#00334f"
+      inactive: 
+        color: "#0087c6"
+      background: 
+        top-line-color: "#63b2dc"
+        bottom-line-color: "#63b2dc"
+        top-color: "#95c2d5"
+        bottom-color: "#95c2d5"

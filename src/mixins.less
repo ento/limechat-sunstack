@@ -1,0 +1,60 @@
+.imageexpansion (@enable, @duration: 0.5s, @delay: 0s, @timing: linear) when (@enable) {
+  -webkit-animation-name: imageexpansion;
+  -webkit-animation-duration: @duration;
+  -webkit-animation-delay: @delay;
+  -webkit-animation-timing-function: @timing;
+}
+
+.imageexpansion (@enable, @duration: 0.5s, @delay: 0s, @timing: linear) {}
+
+.enterpop (@enable, @animName: pop, @duration: 0.3s) when (@enable) {
+  -webkit-animation-name: @animName;
+  -webkit-animation-duration: @duration;
+}
+
+.enterpop (@enable, @animName: pop, @duration: 0.3s) {}
+
+.urlexpansion (@enable) when (@enable) {
+  -webkit-animation-name: urlexpansion;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: cubic-bezier(0.5,0,0.5,1);
+}
+
+.urlexpansion (@enable) {}
+
+.join (@enable) when (@enable) {
+  -webkit-animation-name: join;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: cubic-bezier(0.5,0,0.5,1);
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-delay: 0;
+}
+
+.join (@enable) {}
+
+.quit (@enable) when (@enable) {
+  -webkit-animation-name: quite;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-out;
+  -webkit-transform: scale(1);
+}
+
+.quit (@enable) {}
+
+.rotate (@enable) when (@enable) {
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-out;
+}
+
+.rotate (@enable) {}
+
+.call (@enable) when (@enable) {
+  -webkit-animation-name: call;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: 3;
+  -webkit-animation-timing-function: cubic-bezier(0.5,0,0.5,1);
+}
+
+.call (@enable) {}
