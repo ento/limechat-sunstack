@@ -149,6 +149,9 @@ span {
   -webkit-border-top-right-radius: 2px;
 }
 /*--------------------
+  エンター押した時のアニメ
+---------------------*/
+/*--------------------
   通常行
 ---------------------*/
 /*時間*/
@@ -178,9 +181,6 @@ span {
   max-height: 9999px;
   max-width: 700px;
 }
-/*--------------------
-  エンター押した時のアニメ
----------------------*/
 /*---------------------------------
 
   Sender (名前)
@@ -190,6 +190,9 @@ span {
   display: inline;
   padding: 3px;
   vertical-align: middle;
+}
+.sender[first=false] {
+  display: none;
 }
 div[type="prvmsg"] .sender {
   display: block;
@@ -249,6 +252,7 @@ div[type="notice"] .sender {
 .event {
   border-style: solid;
   border-width: 1px;
+  border-top-width: 0px;
   min-height: 25px;
   padding: 4px 4em 4px 33px;
   -webkit-border-radius: 2px;
@@ -273,6 +277,9 @@ div[type="notice"] .sender {
 .event .place {
   margin-right: 5px;
   padding: 1px;
+}
+.text + .event {
+  border-top-width: 1px;
 }
 /*---------------------------------
 
@@ -351,10 +358,6 @@ div[type="notice"] .sender {
   padding-right: 2px;
   padding-top: -1px;
   -webkit-border-radius: 3px;
-  -webkit-animation-name: call;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-iteration-count: 3;
-  -webkit-animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
 }
 /*---------------------------------
 
@@ -449,31 +452,29 @@ a {
   color: #268bd2;
 }
 .line {
+  background-color: #fdf6e3;
   border-color: #eee8d5;
 }
-.text .time {
-  color: #586e75;
-}
-.line.event .time {
-  color: #586e75;
+.time {
+  color: #93a1a1;
 }
 .inlineimage {
-  -webkit-box-shadow: 1px 1px 2px #888888;
+  -webkit-box-shadow: 1px 1px 2px #93a1a1;
 }
 .inlineimage:hover {
-  -webkit-box-shadow: 3px 3px 4px #888888;
+  -webkit-box-shadow: 3px 3px 4px #93a1a1;
 }
 .sender[type=myself] {
-  color: #586e75;
+  color: #b58900;
 }
 .sender[type=normal] {
-  color: #586e75;
+  color: #6c71c4;
 }
 .avatar {
   -webkit-box-shadow: 1px 1px 3px #93a1a1;
 }
 .url {
-  color: #859900;
+  color: #268bd2;
 }
 .url:hover {
   color: #cb4b16;
@@ -481,127 +482,80 @@ a {
 .place {
   color: #586e75;
 }
-.event .url {
-  color: rgba(88, 110, 117, 0.8);
-}
-.event .url:hover {
-  color: rgba(88, 110, 117, 0.8);
-}
-.event .place {
-  color: #268bd2;
-}
 .event[type] {
-  background-color: #eee8d5;
-  background-image: url(vicutake-solarized/static/images/or_light1.png);
-  background-repeat: repeat-x;
-  border-color: rgba(147, 161, 161, 0.4) rgba(147, 161, 161, 0.3) rgba(147, 161, 161, 0.3) rgba(147, 161, 161, 0.3);
-  color: #859900;
-  text-shadow: -1px -1px 0 rgba(147, 161, 161, 0.4);
+  background-color: #fdf6e3;
+  text-shadow: -1px -1px 0 rgba(253, 246, 227, 0.8);
   -webkit-box-shadow: 1px 2px 2px rgba(147, 161, 161, 0.4);
 }
-.event .message {
-  color: #eee8d5;
-}
-.event:before {
-  background-color: rgba(147, 161, 161, 0.1);
-  background-image: url(vicutake-solarized/static/images/or_aqua1.png);
-  background-repeat: repeat-x;
-  border-right-color: rgba(147, 161, 161, 0.4);
-}
-.event[type="join"] .address {
+.event[type][type="join"] .address {
   color: rgba(131, 148, 150, 0.7);
 }
-.event[type="system"] {
-  background-image: url(vicutake-solarized/static/images/or_light2_check1.png);
+.event[type][type=system] {
+  background-color: #fdf6e3;
 }
-.line[type="notice"] .message {
-  color: #002b36;
+.event[type]:before {
+  background-color: rgba(147, 161, 161, 0.1);
+  background-image: url(vicutake-solarized/static/images/or_aqua1.png);
+}
+.event[type] .message {
+  color: #93a1a1;
+}
+.event[type] .message[type=system] {
+  color: #2aa198;
+}
+.event[type] .message[type=error] {
+  color: #dc322f;
+  font-weight: bold;
+}
+.event[type] .message[type=reply] {
+  color: #2aa198;
+}
+.event[type] .message[type=error_reply] {
+  color: #dc322f;
+}
+.event[type] .message[type=dcc_send_send] {
+  color: #2aa198;
+}
+.event[type] .message[type=dcc_send_receive] {
+  color: #2aa198;
+}
+.event[type] .message[type=notice] {
+  color: #657b83;
+}
+.event[type] .message[type=action] {
+  color: #2aa198;
+}
+.event[type] .message[type=debug_send] {
+  color: #93a1a1;
+}
+.event[type] .message[type=debug_receive] {
+  color: #93a1a1;
+}
+.event[type] .url {
+  color: rgba(88, 110, 117, 0.8);
+}
+.event[type] .url:hover {
+  color: rgba(88, 110, 117, 0.8);
+}
+body[type=console] .event[type],
+body[type=server] .event[type] {
+  background-image: none;
+  border-color: rgba(147, 161, 161, 0.2) rgba(147, 161, 161, 0.3) rgba(147, 161, 161, 0.3) rgba(147, 161, 161, 0.3);
+}
+body[type=console] .event[type]:before,
+body[type=server] .event[type]:before {
+  background-image: url(vicutake-solarized/static/images/shadow.png);
+  border-color: rgba(147, 161, 161, 0.6);
 }
 .highlight {
   color: #d33682;
 }
-.line[highlight="true"] {
+.line[highlight=true] {
   background-color: #eee8d5;
 }
-.line[highlight="true"][alternate="even"] {
+.line[highlight=true][alternate="even"] {
   border-color: #93a1a1;
 }
-.line[highlight="true"] .sender {
-  background-color: #d33682;
-  -webkit-box-shadow: 1px 1px 1px #eee8d5;
-}
-.line[highlight="true"] .sender {
-  color: #93a1a1 !important;
-}
-body[type="console"] .event[type],
-body[type="server"] .event[type] {
-  background-image: none;
-  border-color: rgba(147, 161, 161, 0.2) rgba(147, 161, 161, 0.3) rgba(147, 161, 161, 0.3) rgba(147, 161, 161, 0.3);
-  text-shadow: 1px 1px 0 rgba(147, 161, 161, 0.4);
-}
-body[type="console"] .event[type]:before,
-body[type="server"] .event[type]:before {
-  background-image: url(vicutake-solarized/static/images/shadow.png);
-  border-color: rgba(147, 161, 161, 0.6);
-}
-.message[type=system] {
-  color: #859900;
-}
-.message[type=error] {
-  color: #dc322f;
-  font-weight: bold;
-}
-.message[type=reply] {
-  color: #2aa198;
-}
-.message[type=error_reply] {
-  color: #dc322f;
-}
-.message[type=dcc_send_send] {
-  color: #2aa198;
-}
-.message[type=dcc_send_receive] {
-  color: #6c71c4;
-}
-.message[type=notice] {
-  color: #93a1a1;
-}
-.message[type=action] {
-  color: #859900;
-}
-.message[type=join] {
-  color: #859900;
-}
-.message[type=part] {
-  color: #859900;
-}
-.message[type=kick] {
-  color: #859900;
-}
-.message[type=quit] {
-  color: #859900;
-}
-.message[type=kill] {
-  color: #859900;
-}
-.message[type=nick] {
-  color: #859900;
-}
-.message[type=mode] {
-  color: #859900;
-}
-.message[type=topic] {
-  color: #859900;
-}
-.message[type=invite] {
-  color: #859900;
-}
-.message[type=wallops] {
-  color: #859900;
-}
-.message[type=debug_send] {
-  color: #93a1a1;
-}
-.message[type=debug_receive] {
-  color: #93a1a1;
+.line[highlight=true] .sender {
+  color: #d33682;
 }

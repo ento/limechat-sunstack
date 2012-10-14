@@ -12,31 +12,28 @@ a {
 }
 
 .line {
+  background-color: @base3;
   border-color: @base2;
 }
 
-.line.text .time {
-  color: @base01;
-}
-
-.line.event .time {
-  color: @base01;
+.time {
+  color: @base1;
 }
 
 .inlineimage {
-  -webkit-box-shadow: 1px 1px 2px @grayShadow;
+  -webkit-box-shadow: 1px 1px 2px @base1;
 
   &:hover {
-    -webkit-box-shadow: 3px 3px 4px @grayShadow;
+    -webkit-box-shadow: 3px 3px 4px @base1;
   }
 }
 
 .sender[type=myself] {
-  color: @base01;
+  color: @yellow;
 }
 
 .sender[type=normal] {
-  color: @base01;
+  color: @violet;
 }
 
 .avatar {
@@ -44,7 +41,7 @@ a {
 }
 
 .url {
-  color: @green;
+  color: @blue;
   &:hover {
     color: @orange;
   }
@@ -54,7 +51,53 @@ a {
   color: @base01;
 }
 
-.event {
+.event[type] {
+  background-color: @base3;
+
+  text-shadow: -1px -1px 0 fade(@base3, 80%);
+  -webkit-box-shadow: 1px 2px 2px fade(@base1, 40%);
+
+  &[type="join"] {
+    .address {
+      color: fade(@base0, 70%);
+    }
+  }
+
+  &[type=system] {
+    background-color: @base3;
+  }
+
+  &:before {
+    background-color: fade(@base1, 10%);
+    background-image: url(vicutake-solarized/static/images/or_aqua1.png);
+  }
+
+  .message {
+    color: @base1;
+
+    &[type=system] { color: @cyan; }
+    &[type=error] { color: @red; font-weight: bold; }
+    &[type=reply] { color: @cyan; }
+    &[type=error_reply] { color: @red; }
+    &[type=dcc_send_send] { color: @cyan; }
+    &[type=dcc_send_receive] { color: @cyan; }
+    &[type=privmsg] {}
+    &[type=notice] { color: @base00; }
+    &[type=action] { color: @cyan; }
+    &[type=join] { }
+    &[type=part] { }
+    &[type=kick] { }
+    &[type=quit] { }
+    &[type=kill] { }
+    &[type=nick] { }
+    &[type=mode] { }
+    &[type=topic] { }
+    &[type=invite] { }
+    &[type=wallops] { }
+    &[type=debug_send] { color: @base1; }
+    &[type=debug_receive] { color: @base1; }
+  }
+
   .url {
     color: fade(@base01, 80%);
 
@@ -62,77 +105,12 @@ a {
       color: fade(@base01, 80%);
     }
   }
-
-  .place {
-    color: @blue;
-  }
 }
 
-.event[type] {
-  background-color: @base2;
-  background-image: url(vicutake-solarized/static/images/or_light1.png);
-  background-repeat: repeat-x;  
-  border-color: fade(@base1, 40%) fade(@base1, 30%) fade(@base1, 30%) fade(@base1, 30%);
-  color: @green;
-  text-shadow: -1px -1px 0 fade(@base1, 40%);
-  -webkit-box-shadow: 1px 2px 2px fade(@base1, 40%);
-}
-
-.event .message {
-  color: @base2;
-}
-
-.event:before {
-  background-color: fade(@base1, 10%);
-  background-image: url(vicutake-solarized/static/images/or_aqua1.png);
-  background-repeat: repeat-x;
-  border-right-color: fade(@base1, 40%);
-}
-
-.event[type="join"] {
-  .address {
-    color: fade(@base0, 70%);
-  }
-}
-
-.event[type="system"] {
-  background-image: url(vicutake-solarized/static/images/or_light2_check1.png)
-}
-
-.line[type="notice"] {
-  .message {
-    color: @base03;
-  }
-}
-
-.highlight {
-  color: @magenta;
-}
-
-.line[highlight="true"] {
-  background-color: @base2;
-
-  &[alternate="even"] {
-    border-color: @base1;
-  }
-
-  .sender {
-    background-color: @magenta;
-    -webkit-box-shadow: 1px 1px 1px @base2;
-  }
-}
-
-.line[highlight="true"] {
-  .sender {
-    color: @base1!important;
-  }
-}
-
-body[type="console"] .event[type],
-body[type="server"] .event[type] {
+body[type=console] .event[type],
+body[type=server] .event[type] {
   background-image: none;
   border-color: fade(@base1, 20%) fade(@base1, 30%) fade(@base1, 30%) fade(@base1, 30%);
-  text-shadow: 1px 1px 0 fade(@base1, 40%);
 
   &:before {
     background-image: url(vicutake-solarized/static/images/shadow.png);
@@ -140,24 +118,18 @@ body[type="server"] .event[type] {
   }
 }
 
-.message[type=system] { color: @green; }
-.message[type=error] { color: @red; font-weight: bold; }
-.message[type=reply] { color: @cyan; }
-.message[type=error_reply] { color: @red; }
-.message[type=dcc_send_send] { color: @cyan; }
-.message[type=dcc_send_receive] { color: @violet; }
-.message[type=privmsg] {}
-.message[type=notice] { color: @base1; }
-.message[type=action] { color: @green; }
-.message[type=join] { color: @green; }
-.message[type=part] { color: @green; }
-.message[type=kick] { color: @green; }
-.message[type=quit] { color: @green; }
-.message[type=kill] { color: @green; }
-.message[type=nick] { color: @green; }
-.message[type=mode] { color: @green; }
-.message[type=topic] { color: @green; }
-.message[type=invite] { color: @green; }
-.message[type=wallops] { color: @green; }
-.message[type=debug_send] { color: @base1; }
-.message[type=debug_receive] { color: @base1; }
+.highlight {
+  color: @magenta;
+}
+
+.line[highlight=true] {
+  background-color: @base2;
+
+  &[alternate="even"] {
+    border-color: @base1;
+  }
+
+  .sender {
+    color: @magenta;
+  }
+}
