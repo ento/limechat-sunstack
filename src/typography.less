@@ -1,0 +1,78 @@
+body {
+  font-family: 'Lucida Grande';
+  font-size: @baseFontSize;
+}
+
+.line {
+  line-height: 1.7;
+}
+
+.time {
+  font-size: 7.2pt;
+}
+
+div[type="prvmsg"] .sender {
+  font-size: 8pt;
+}
+
+div[type="notice"] .sender {
+  font-size: 7.8pt;
+}
+
+.message {
+  &[type="notice"] {
+    font-size: 8.8pt;
+  }
+}
+
+.url {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.place {
+  font-size: 7pt;
+}
+
+.address {
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.event {
+  font-size: 8pt;
+
+  .time {
+    font-size: 7pt;
+  }
+}
+
+.event[type="join"],
+.event[type="part"],
+.event[type="quit"] {
+  .message {
+    font-size: 8pt;
+  }
+}
+
+.highlight {
+  font-weight: normal;
+}
+
+.line[highlight="true"] {
+  .sender {
+    font-weight: bold;
+  }
+}
+
+.console {
+  .text {
+    font-size: 9pt;
+  }
+
+  .sender {
+    font-size: 8pt;
+  }
+}

@@ -1,0 +1,454 @@
+html {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+body {
+  margin: 0 3px;
+}
+
+div,
+span {
+  -webkit-box-sizing: border-box;
+}
+
+/*---------------------------------
+
+  Line
+
+----------------------------------*/
+
+.line {
+  border: 0px solid;
+/*  margin: 0px -6px;*/
+  position: relative;
+  -webkit-border-bottom-left-radius: 2px;
+  -webkit-border-top-right-radius: 2px;
+}
+
+/*--------------------
+  エンター押した時のアニメ
+---------------------*/
+
+.line:last-child {
+  .enterpop(@animateEnter);
+}
+
+/*--------------------
+  通常行
+---------------------*/
+
+/*時間*/
+
+.text .time {
+  display: inline-block;
+  padding: 1px 2px;
+  position: absolute;
+  right: 1px;
+  top: 6px;
+}
+
+/*--------------------
+  偶数・奇数行
+---------------------*/
+
+.line[alternate="even"] {
+}
+
+.line[alternate="odd"] {
+  
+}
+
+/*---------------------------------
+
+  Inline Image
+
+----------------------------------*/
+
+.inlineimage {
+  display: inline;
+  margin-top: 3px 5px;
+  max-height: 24px;
+  max-width: 700px;
+  position: relative;
+
+  &:hover {
+    max-height: 9999px;
+    max-width: 700px;
+    .imageexpansion(@animateImageExpansion);
+  }
+}
+
+/*---------------------------------
+
+  Sender (名前)
+
+----------------------------------*/
+
+.sender {
+  display: inline;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+div[type="prvmsg"] .sender {
+  display: block;
+}
+
+div[type="notice"] .sender {
+  display: inline-block;
+}
+
+/*--------------------
+  発言順
+---------------------*/
+
+.sender[first=true] {
+}
+
+.sender[first=false] {
+}
+
+/*---------------------------------
+
+  Avatar
+
+----------------------------------*/
+
+.avatar {
+  display: block;
+  left: 5px;
+  max-height: 32px;
+  max-width: 32px;
+  position: absolute;
+  top: 6px;
+}
+
+/*---------------------------------
+
+  Message
+
+----------------------------------*/
+
+.message {
+  display: block;
+  padding-left: 8px;
+  padding-right: 6px;
+  vertical-align: middle;
+
+  &[type="notice"] {
+    display: inline;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+
+/*--------------------
+  Class
+---------------------*/
+
+.url {
+  display: inline-block;
+  word-break: break-all;
+
+  &:hover {
+    .urlexpansion(@animateUrlExpansion);
+  }
+
+  &:before {
+  }
+
+  &[href$='.gif'],
+  &[href$='.jpg'],
+  &[href$='.png'],
+  &[href$='.bmp'] {
+    &:after {
+    }
+  }
+
+  &[href$='.txt'],
+  &[href$='.css'],
+  &[href$='.js'],
+  &[href$='.xml'] {
+    &:after {
+    }
+  }
+}
+
+
+.place {
+  display: inline-block;
+  position: static;
+  vertical-align: middle;
+}
+
+/*---------------------------------
+
+  Events
+
+----------------------------------*/
+
+.event {
+  border-style: solid;
+  border-width: 1px;
+  min-height: 25px;
+  padding: 4px 4em 4px 33px;
+  -webkit-border-radius: 2px;
+
+  &:before {
+    content: url(vicutake-solarized/static/famfamfam/cog.png);
+    height: 100%;
+    left: 0;
+    padding: 5px 4px 2px;
+    position: absolute;
+    top: -1px;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+  }
+
+  .time {
+    display: inline-block;
+    padding: 2px 4px 2px 6px;
+    position: absolute;
+    right: 1px;
+    top: 5px;
+  }
+
+  .place {
+    margin-right: 5px;
+    padding: 1px;
+  }
+}
+
+
+/*---------------------------------
+
+  Event Icon
+
+----------------------------------*/
+
+.event[type="system"]:before {
+  content: url(vicutake-solarized/static/famfamfam/rainbow.png);
+}
+
+.event[type="join"]:before {
+  content: url(vicutake-solarized/static/famfamfam/lightbulb.png);
+}
+
+.event[type="part"]:before,
+.event[type="quit"]:before{
+  content: url(vicutake-solarized/static/famfamfam/lightbulb_off.png);
+}
+
+.event[type="reply"]:before {
+  
+}
+  
+.event[type="nick"]:before {
+  content: url(vicutake-solarized/static/famfamfam/pencil2.png);
+}
+
+.event[type="mode"]:before {
+  content: url(vicutake-solarized/static/famfamfam/cup.png);
+}
+
+.event[type="topic"]:before {
+  content: url(vicutake-solarized/static/famfamfam/bell.png);
+}
+
+/*---------------------------------
+
+  Event Level 2
+
+----------------------------------*/
+
+
+/*-------------------- 
+  Join
+---------------------*/
+
+.event[type="join"] {
+  .join(@animateJoin);
+}
+
+/*--------------------
+  Quite and Part
+---------------------*/
+
+.event[type="part"],
+.event[type="quit"] {
+  .quit(@animateQuit);
+}
+
+/*--------------------
+  Nick
+---------------------*/
+
+.event[type="nick"] {
+  .rotate(@animateNick);
+}
+
+/*---------------------------------
+
+  Event Level 1
+
+----------------------------------*/
+
+/*-------------------- 
+  System
+---------------------*/
+
+/* Topic change */
+
+.event[type="topic"] {
+}
+
+.event[type="topic"]:nth-last-of-type(1) {
+}
+
+/* reply */
+
+.event[type="reply"] {
+}
+
+/* System */
+
+.event[type="system"] {
+}
+
+/* Error */
+
+.event[type="error"] {
+}
+
+/* Reply */
+
+.event[type="reply"] {
+}
+
+.event[type="error_reply"] {
+}
+
+/* Send */
+
+.event[type=dcc_send_send] {
+}
+
+.event[type=dcc_send_receive] {
+}
+
+/* Notice Quit */
+
+.line[type=notice] {
+  + .line[type="notice"] {
+    position: relative;
+  }
+}
+
+/* Action */
+
+.event[type="action"] {
+}
+
+/* Kick Kill */
+
+.event[type="kick"] {
+}
+
+.event[type="kill"] {
+}
+
+/* Nick */
+
+.event[type="nick"] {
+}
+
+/* Mode */
+
+.event[type="mode"] {
+}
+
+/* Send */
+
+.event[type="invite"] {
+}
+
+.event[type="wallops"] {
+}
+
+.event[type="debug_send"] {
+}
+
+.event[type="debug_receive"] {
+}
+
+/*---------------------------------
+
+  Highlight
+
+----------------------------------*/
+
+.line[highlight="true"] {
+  &[alternate="odd"] {
+  }
+
+  .sender {
+    display: inline-block;
+    margin-bottom: -1px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: -1px;
+    padding-bottom: -1px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: -1px;
+  
+    -webkit-border-radius: 3px;
+  
+    .call(@animateCall);
+  }
+}
+
+/*---------------------------------
+
+  Console
+
+----------------------------------*/
+
+body[type="console"] .event[type],
+body[type="server"] .event[type] {
+  -webkit-border-radius: 0px;
+  -webkit-animation-name: none;
+
+  &:before {
+    border-bottom: 1px solid;
+    height: auto;
+    -webkit-border-radius: 0px;
+  }
+}
+
+.console {
+  .line[highlight="true"] {
+    -webkit-animation-name: none;
+  }
+
+  .line[highlight="true"] {
+  }
+
+  .line[alternate="odd"] {
+  }
+
+  .line[alternate="even"] {
+  }
+
+  .text {
+    padding-left: 5px;
+    vertical-align: middle;
+  }
+
+  .sender {
+    position: static;
+    vertical-align: middle;
+  }
+}

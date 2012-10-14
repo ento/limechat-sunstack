@@ -2,50 +2,50 @@
   log-view: 
     nickname-format: "%n : "
     timestamp-format: "%H:%M:%S"
-    scroller-highlight-color: "#ff00ff"
+    scroller-highlight-color: "#d33682"
   input-text: 
     font-family: "Lucida Grande"
     font-size: 13
-    background-color: "#ffffff"
-    color: "#000000"
+    background-colorfff: "#fdf6e3"
+    color: "#657b83"
     selected: 
-      background-color: "#"
+      background-color: "#eee8d5"
   member-list: 
     font-family: "Lucida Grande"
     font-size: 10
-    color: "#333333"
-    background-color: "#eaf2f9"
+    color: "#657b83"
+    background-color: "#fdf6e3"
     operator: 
-      color: "#222222"
+      color: "#657b83"
     selected: 
-      color: "#ffffff"
+      color: "#657b83"
       background: 
-        top-line-color: "#555555"
-        bottom-line-color: "#555555"
-        top-color: "#555555"
-        bottom-color: "#555555"
+        top-line-color: "#eee8d5"
+        bottom-line-color: "#eee8d5"
+        top-color: "#eee8d5"
+        bottom-color: "#eee8d5"
   server-tree: 
     font-family: "Lucida Grande"
     font-size: 11
-    background-color: "#eaf2f9"
+    background-color: "#fdf6e3"
     highlight: 
-      color: "#ff00ff"
+      color: "#d33682"
     newtalk: 
-      color: "#ff0000"
+      color: "#dc322f"
     unread: 
-      color: "#0000ff"
+      color: "#268bd2"
     normal: 
       active: 
-        color: "#1f3135"
+        color: "#657b83"
       inactive: 
-        color: "#888691"
+        color: "#839496"
     selected: 
       active: 
-        color: "#00334f"
+        color: "#657b83"
       inactive: 
-        color: "#0087c6"
+        color: "#839496"
       background: 
-        top-line-color: "#63b2dc"
-        bottom-line-color: "#63b2dc"
-        top-color: "#95c2d5"
-        bottom-color: "#95c2d5"
+        top-line-color: "#eee8d5"
+        bottom-line-color: "#eee8d5"
+        top-color: "#eee8d5"
+        bottom-color: "#eee8d5"
