@@ -5,14 +5,14 @@
 # You cannot use color names.
  
 log-view:
-    nickname-format: '%n : '
+    nickname-format: '%n'
     timestamp-format: '%H:%M:%S'
     scroller-highlight-color: $magenta
  
 input-text:
     font-family: 'Lucida Grande'
     font-size: 13
-    background-colorfff: $base3
+    background-color: $base3
     color: $base00
     selected:
         background-color: $base2

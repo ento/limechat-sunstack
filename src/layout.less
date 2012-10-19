@@ -19,8 +19,10 @@ span {
 ----------------------------------*/
 
 .line {
-  border: 0px solid;
-/*  margin: 0px -6px;*/
+  border-width: 0px;
+  clear: left;
+  margin: 4px -6px;
+  padding-right: 0;
   position: relative;
   -webkit-border-bottom-left-radius: 2px;
   -webkit-border-top-right-radius: 2px;
@@ -40,11 +42,16 @@ span {
 
 /*時間*/
 
-.text .time {
+.time {
   display: inline-block;
-  padding: 1px 2px;
   position: absolute;
   right: 1px;
+  text-align: right;
+  width: @timeWidth;
+}
+
+.text .time {
+  padding: 1px 4px;
   top: 6px;
 }
 
@@ -86,21 +93,20 @@ span {
 ----------------------------------*/
 
 .sender {
-  display: inline;
-  padding: 3px;
+  clear: left;
+  float: left;
+  padding-top: 4px;
+  text-align: right;
+  width: @senderWidth;
   vertical-align: middle;
 
   &[first=false] {
     display: none;
+
+    + .message {
+      margin-top: -12px;
+    }
   }
-}
-
-div[type="prvmsg"] .sender {
-  display: block;
-}
-
-div[type="notice"] .sender {
-  display: inline-block;
 }
 
 /*--------------------
@@ -136,15 +142,9 @@ div[type="notice"] .sender {
 
 .message {
   display: block;
-  padding-left: 8px;
-  padding-right: 6px;
+  margin-left: @senderWidth + 2px;
+  padding: 4px @timeWidth 4px 8px;
   vertical-align: middle;
-
-  &[type="notice"] {
-    display: inline;
-    padding-left: 4px;
-    padding-right: 4px;
-  }
 }
 
 /*--------------------
@@ -179,10 +179,16 @@ div[type="notice"] .sender {
   }
 }
 
-.place {
-  display: inline-block;
+.text .place {
+  clear: left;
+  float: left;
+  overflow: hidden;
   position: static;
+  text-align: right;
+  text-overflow: ellipsize;
   vertical-align: middle;
+  white-space: nowrap;
+  width: @senderWidth;
 }
 
 /*---------------------------------
@@ -196,31 +202,33 @@ div[type="notice"] .sender {
   border-width: 1px;
   border-top-width: 0px;
   min-height: 25px;
-  padding: 4px 4em 4px 33px;
+  padding: 4px 4em 4px 4px;
   -webkit-border-radius: 2px;
 
-  &:before {
-    content: url(vicutake-solarized/static/famfamfam/cog.png);
-    height: 100%;
-    left: 0;
-    padding: 5px 4px 2px;
-    position: absolute;
-    top: -1px;
-    -webkit-border-top-left-radius: 2px;
-    -webkit-border-bottom-left-radius: 2px;
-  }
-
   .time {
-    display: inline-block;
     padding: 2px 4px 2px 6px;
-    position: absolute;
-    right: 1px;
     top: 5px;
   }
 
   .place {
-    margin-right: 5px;
-    padding: 1px;
+    display: inline;
+    margin-left: @senderWidth;
+    padding: 4px 0;
+    vertical-align: middle;
+  }
+
+  .message {
+    display: inline;
+    margin-left: 0;
+    padding-left: @senderWidth + 8px;
+  }
+
+}
+
+body[type=console] .event[type],
+body[type=server] .event[type] {
+  .message {
+    padding-left: 0;
   }
 }
 
@@ -228,41 +236,6 @@ div[type="notice"] .sender {
   border-top-width: 1px;
 }
 
-
-/*---------------------------------
-
-  Event Icon
-
-----------------------------------*/
-
-.event[type="system"]:before {
-  content: url(vicutake-solarized/static/famfamfam/rainbow.png);
-}
-
-.event[type="join"]:before {
-  content: url(vicutake-solarized/static/famfamfam/lightbulb.png);
-}
-
-.event[type="part"]:before,
-.event[type="quit"]:before{
-  content: url(vicutake-solarized/static/famfamfam/lightbulb_off.png);
-}
-
-.event[type="reply"]:before {
-  
-}
-  
-.event[type="nick"]:before {
-  content: url(vicutake-solarized/static/famfamfam/pencil2.png);
-}
-
-.event[type="mode"]:before {
-  content: url(vicutake-solarized/static/famfamfam/cup.png);
-}
-
-.event[type="topic"]:before {
-  content: url(vicutake-solarized/static/famfamfam/bell.png);
-}
 
 /*---------------------------------
 
@@ -401,18 +374,6 @@ div[type="notice"] .sender {
   }
 
   .sender {
-    display: inline-block;
-    margin-bottom: -1px;
-    margin-left: 2px;
-    margin-right: 2px;
-    margin-top: -1px;
-    padding-bottom: -1px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-top: -1px;
-  
-    -webkit-border-radius: 3px;
-  
     .call(@animateCall);
   }
 }
@@ -450,11 +411,12 @@ body[type="server"] .event[type] {
   }
 
   .text {
-    padding-left: 5px;
     vertical-align: middle;
   }
 
   .sender {
+    line-height: 1;
+    padding-top: 0;
     position: static;
     vertical-align: middle;
   }

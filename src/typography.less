@@ -8,14 +8,15 @@ body {
 }
 
 .time {
-  font-size: 7.2pt;
+  font-size: 7pt;
 }
 
-div[type="prvmsg"] .sender {
-  font-size: 8pt;
+.place {
+  font-size: 7.8pt;
 }
 
-div[type="notice"] .sender {
+.sender {
+  line-height: 1.4;
   font-size: 7.8pt;
 }
 
@@ -32,10 +33,6 @@ div[type="notice"] .sender {
   }
 }
 
-.place {
-  font-size: 7pt;
-}
-
 .address {
   text-decoration: none;
   word-break: break-all;
@@ -43,18 +40,6 @@ div[type="notice"] .sender {
 
 .event {
   font-size: 8pt;
-
-  .time {
-    font-size: 7pt;
-  }
-}
-
-.event[type="join"],
-.event[type="part"],
-.event[type="quit"] {
-  .message {
-    font-size: 8pt;
-  }
 }
 
 .highlight {
@@ -64,15 +49,5 @@ div[type="notice"] .sender {
 .line[highlight="true"] {
   .sender {
     font-weight: bold;
-  }
-}
-
-.console {
-  .text {
-    font-size: 9pt;
-  }
-
-  .sender {
-    font-size: 8pt;
   }
 }

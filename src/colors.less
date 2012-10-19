@@ -1,10 +1,6 @@
 html {
-  background-color: @base3;
+  background-color: @base2;
   color: @base00;
-}
-
-body {
-  background-image: url(vicutake-solarized/static/images/bg.png);
 }
 
 a {
@@ -12,7 +8,6 @@ a {
 }
 
 .line {
-  background-color: @base3;
   border-color: @base2;
 }
 
@@ -29,21 +24,25 @@ a {
 }
 
 .sender[type=myself] {
-  color: @yellow;
+  color: @violet;
 }
 
 .sender[type=normal] {
-  color: @violet;
+  color: @base00;
 }
 
 .avatar {
   -webkit-box-shadow: 1px 1px 3px @base1;
 }
 
+.message {
+  background-color: @base3;
+}
+
 .url {
   color: @blue;
   &:hover {
-    color: @orange;
+    color: @magenta;
   }
 }
 
@@ -51,20 +50,25 @@ a {
   color: @base01;
 }
 
-.event[type] {
-  background-color: @base3;
+.text {
+  .message {
+    -webkit-box-shadow: 1px 1px 0px fade(@base1, 40%);
+  }
 
+  .time {
+    background-color: @base3;
+  }
+}
+
+.event[type] {
+  border-width: 0;
+  background-color: @base2;
   text-shadow: -1px -1px 0 fade(@base3, 80%);
-  -webkit-box-shadow: 1px 2px 2px fade(@base1, 40%);
 
   &[type="join"] {
     .address {
       color: fade(@base0, 70%);
     }
-  }
-
-  &[type=system] {
-    background-color: @base3;
   }
 
   &:before {
@@ -73,6 +77,7 @@ a {
   }
 
   .message {
+    background-color: @base2;
     color: @base1;
 
     &[type=system] { color: @cyan; }
@@ -111,11 +116,6 @@ body[type=console] .event[type],
 body[type=server] .event[type] {
   background-image: none;
   border-color: fade(@base1, 20%) fade(@base1, 30%) fade(@base1, 30%) fade(@base1, 30%);
-
-  &:before {
-    background-image: url(vicutake-solarized/static/images/shadow.png);
-    border-color: fade(@base1, 60%);
-  }
 }
 
 .highlight {

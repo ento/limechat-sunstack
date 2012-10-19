@@ -141,9 +141,10 @@ span {
 
 ----------------------------------*/
 .line {
-  border: 0px solid;
-  /*  margin: 0px -6px;*/
-
+  border-width: 0px;
+  clear: left;
+  margin: 4px -6px;
+  padding-right: 0;
   position: relative;
   -webkit-border-bottom-left-radius: 2px;
   -webkit-border-top-right-radius: 2px;
@@ -155,11 +156,15 @@ span {
   通常行
 ---------------------*/
 /*時間*/
-.text .time {
+.time {
   display: inline-block;
-  padding: 1px 2px;
   position: absolute;
   right: 1px;
+  text-align: right;
+  width: 36px;
+}
+.text .time {
+  padding: 1px 4px;
   top: 6px;
 }
 /*--------------------
@@ -187,18 +192,18 @@ span {
 
 ----------------------------------*/
 .sender {
-  display: inline;
-  padding: 3px;
+  clear: left;
+  float: left;
+  padding-top: 4px;
+  text-align: right;
+  width: 70px;
   vertical-align: middle;
 }
 .sender[first=false] {
   display: none;
 }
-div[type="prvmsg"] .sender {
-  display: block;
-}
-div[type="notice"] .sender {
-  display: inline-block;
+.sender[first=false] + .message {
+  margin-top: -12px;
 }
 /*--------------------
   発言順
@@ -223,14 +228,9 @@ div[type="notice"] .sender {
 ----------------------------------*/
 .message {
   display: block;
-  padding-left: 8px;
-  padding-right: 6px;
+  margin-left: 72px;
+  padding: 4px 36px 4px 8px;
   vertical-align: middle;
-}
-.message[type="notice"] {
-  display: inline;
-  padding-left: 4px;
-  padding-right: 4px;
 }
 /*--------------------
   Class
@@ -239,10 +239,16 @@ div[type="notice"] .sender {
   display: inline-block;
   word-break: break-all;
 }
-.place {
-  display: inline-block;
+.text .place {
+  clear: left;
+  float: left;
+  overflow: hidden;
   position: static;
+  text-align: right;
+  text-overflow: ellipsize;
   vertical-align: middle;
+  white-space: nowrap;
+  width: 70px;
 }
 /*---------------------------------
 
@@ -254,56 +260,30 @@ div[type="notice"] .sender {
   border-width: 1px;
   border-top-width: 0px;
   min-height: 25px;
-  padding: 4px 4em 4px 33px;
+  padding: 4px 4em 4px 4px;
   -webkit-border-radius: 2px;
 }
-.event:before {
-  content: url(vicutake-solarized/static/famfamfam/cog.png);
-  height: 100%;
-  left: 0;
-  padding: 5px 4px 2px;
-  position: absolute;
-  top: -1px;
-  -webkit-border-top-left-radius: 2px;
-  -webkit-border-bottom-left-radius: 2px;
-}
 .event .time {
-  display: inline-block;
   padding: 2px 4px 2px 6px;
-  position: absolute;
-  right: 1px;
   top: 5px;
 }
 .event .place {
-  margin-right: 5px;
-  padding: 1px;
+  display: inline;
+  margin-left: 70px;
+  padding: 4px 0;
+  vertical-align: middle;
+}
+.event .message {
+  display: inline;
+  margin-left: 0;
+  padding-left: 78px;
+}
+body[type=console] .event[type] .message,
+body[type=server] .event[type] .message {
+  padding-left: 0;
 }
 .text + .event {
   border-top-width: 1px;
-}
-/*---------------------------------
-
-  Event Icon
-
-----------------------------------*/
-.event[type="system"]:before {
-  content: url(vicutake-solarized/static/famfamfam/rainbow.png);
-}
-.event[type="join"]:before {
-  content: url(vicutake-solarized/static/famfamfam/lightbulb.png);
-}
-.event[type="part"]:before,
-.event[type="quit"]:before {
-  content: url(vicutake-solarized/static/famfamfam/lightbulb_off.png);
-}
-.event[type="nick"]:before {
-  content: url(vicutake-solarized/static/famfamfam/pencil2.png);
-}
-.event[type="mode"]:before {
-  content: url(vicutake-solarized/static/famfamfam/cup.png);
-}
-.event[type="topic"]:before {
-  content: url(vicutake-solarized/static/famfamfam/bell.png);
 }
 /*---------------------------------
 
@@ -347,18 +327,6 @@ div[type="notice"] .sender {
   Highlight
 
 ----------------------------------*/
-.line[highlight="true"] .sender {
-  display: inline-block;
-  margin-bottom: -1px;
-  margin-left: 2px;
-  margin-right: 2px;
-  margin-top: -1px;
-  padding-bottom: -1px;
-  padding-left: 2px;
-  padding-right: 2px;
-  padding-top: -1px;
-  -webkit-border-radius: 3px;
-}
 /*---------------------------------
 
   Console
@@ -379,10 +347,11 @@ body[type="server"] .event[type]:before {
   -webkit-animation-name: none;
 }
 .console .text {
-  padding-left: 5px;
   vertical-align: middle;
 }
 .console .sender {
+  line-height: 1;
+  padding-top: 0;
   position: static;
   vertical-align: middle;
 }
@@ -394,12 +363,13 @@ body {
   line-height: 1.7;
 }
 .time {
-  font-size: 7.2pt;
+  font-size: 7pt;
 }
-div[type="prvmsg"] .sender {
-  font-size: 8pt;
+.place {
+  font-size: 7.8pt;
 }
-div[type="notice"] .sender {
+.sender {
+  line-height: 1.4;
   font-size: 7.8pt;
 }
 .message[type="notice"] {
@@ -411,22 +381,11 @@ div[type="notice"] .sender {
 .url:hover {
   text-decoration: underline;
 }
-.place {
-  font-size: 7pt;
-}
 .address {
   text-decoration: none;
   word-break: break-all;
 }
 .event {
-  font-size: 8pt;
-}
-.event .time {
-  font-size: 7pt;
-}
-.event[type="join"] .message,
-.event[type="part"] .message,
-.event[type="quit"] .message {
   font-size: 8pt;
 }
 .highlight {
@@ -435,24 +394,14 @@ div[type="notice"] .sender {
 .line[highlight="true"] .sender {
   font-weight: bold;
 }
-.console .text {
-  font-size: 9pt;
-}
-.console .sender {
-  font-size: 8pt;
-}
 html {
-  background-color: #fdf6e3;
+  background-color: #eee8d5;
   color: #657b83;
-}
-body {
-  background-image: url(vicutake-solarized/static/images/bg.png);
 }
 a {
   color: #268bd2;
 }
 .line {
-  background-color: #fdf6e3;
   border-color: #eee8d5;
 }
 .time {
@@ -465,39 +414,46 @@ a {
   -webkit-box-shadow: 3px 3px 4px #93a1a1;
 }
 .sender[type=myself] {
-  color: #b58900;
+  color: #6c71c4;
 }
 .sender[type=normal] {
-  color: #6c71c4;
+  color: #657b83;
 }
 .avatar {
   -webkit-box-shadow: 1px 1px 3px #93a1a1;
+}
+.message {
+  background-color: #fdf6e3;
 }
 .url {
   color: #268bd2;
 }
 .url:hover {
-  color: #cb4b16;
+  color: #d33682;
 }
 .place {
   color: #586e75;
 }
-.event[type] {
+.text .message {
+  -webkit-box-shadow: 1px 1px 0px rgba(147, 161, 161, 0.4);
+}
+.text .time {
   background-color: #fdf6e3;
+}
+.event[type] {
+  border-width: 0;
+  background-color: #eee8d5;
   text-shadow: -1px -1px 0 rgba(253, 246, 227, 0.8);
-  -webkit-box-shadow: 1px 2px 2px rgba(147, 161, 161, 0.4);
 }
 .event[type][type="join"] .address {
   color: rgba(131, 148, 150, 0.7);
-}
-.event[type][type=system] {
-  background-color: #fdf6e3;
 }
 .event[type]:before {
   background-color: rgba(147, 161, 161, 0.1);
   background-image: url(vicutake-solarized/static/images/or_aqua1.png);
 }
 .event[type] .message {
+  background-color: #eee8d5;
   color: #93a1a1;
 }
 .event[type] .message[type=system] {
@@ -541,11 +497,6 @@ body[type=console] .event[type],
 body[type=server] .event[type] {
   background-image: none;
   border-color: rgba(147, 161, 161, 0.2) rgba(147, 161, 161, 0.3) rgba(147, 161, 161, 0.3) rgba(147, 161, 161, 0.3);
-}
-body[type=console] .event[type]:before,
-body[type=server] .event[type]:before {
-  background-image: url(vicutake-solarized/static/images/shadow.png);
-  border-color: rgba(147, 161, 161, 0.6);
 }
 .highlight {
   color: #d33682;
