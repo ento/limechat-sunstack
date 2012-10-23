@@ -330,14 +330,8 @@ body[type=server] .event[type] .message {
 ----------------------------------*/
 body[type="console"] .event[type],
 body[type="server"] .event[type] {
-  -webkit-border-radius: 0px;
+  -webkit-border-radius: 0;
   -webkit-animation-name: none;
-}
-body[type="console"] .event[type]:before,
-body[type="server"] .event[type]:before {
-  border-bottom: 1px solid;
-  height: auto;
-  -webkit-border-radius: 0px;
 }
 body[type="server"] .event {
   padding-left: 8px;
@@ -442,10 +436,6 @@ a {
 }
 .event[type][type="join"] .address {
   color: rgba(131, 148, 150, 0.7);
-}
-.event[type]:before {
-  background-color: rgba(147, 161, 161, 0.1);
-  background-image: url(vicutake-solarized/static/images/or_aqua1.png);
 }
 .event[type] .message {
   background-color: #eee8d5;
