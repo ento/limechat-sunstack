@@ -14,3 +14,7 @@ limechat-sunstack
 * [Vicutake](http://3ping.org/2009/08/01/0208)
 * [Solarized](http://ethanschoonover.com/solarized)
 * [StackExchange chat](http://chat.stackexchange.com/)
+
+----
+
+Built with [LimeChat theme builder](https://github.com/ento/limechat-theme-builder).
