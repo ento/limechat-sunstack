@@ -161,7 +161,7 @@ span {
   position: absolute;
   right: 1px;
   text-align: right;
-  width: 36px;
+  width: 45px;
 }
 .text .time {
   padding: 1px 4px;
@@ -196,7 +196,7 @@ span {
   float: left;
   padding-top: 4px;
   text-align: right;
-  width: 70px;
+  width: 96px;
   vertical-align: middle;
 }
 .sender[first=false] {
@@ -205,9 +205,6 @@ span {
 .sender[first=false] + .message {
   margin-top: -12px;
 }
-/*--------------------
-  発言順
----------------------*/
 /*---------------------------------
 
   Avatar
@@ -228,8 +225,8 @@ span {
 ----------------------------------*/
 .message {
   display: block;
-  margin-left: 72px;
-  padding: 4px 36px 4px 8px;
+  margin-left: 98px;
+  padding: 4px 45px 4px 8px;
   vertical-align: middle;
 }
 /*--------------------
@@ -248,7 +245,7 @@ span {
   text-overflow: ellipsize;
   vertical-align: middle;
   white-space: nowrap;
-  width: 70px;
+  width: 96px;
 }
 /*---------------------------------
 
@@ -256,27 +253,26 @@ span {
 
 ----------------------------------*/
 .event {
-  border-style: solid;
-  border-width: 1px;
-  border-top-width: 0px;
-  min-height: 25px;
-  padding: 4px 4em 4px 4px;
+  border-width: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 2px 45px 2px 104px;
   -webkit-border-radius: 2px;
 }
 .event .time {
-  padding: 2px 4px 2px 6px;
+  padding: 0 4px 0 0;
   top: 5px;
 }
 .event .place {
   display: inline;
-  margin-left: 70px;
   padding: 4px 0;
   vertical-align: middle;
 }
 .event .message {
   display: inline;
   margin-left: 0;
-  padding-left: 78px;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 body[type=console] .event[type] .message,
 body[type=server] .event[type] .message {
@@ -343,6 +339,9 @@ body[type="server"] .event[type]:before {
   height: auto;
   -webkit-border-radius: 0px;
 }
+body[type="server"] .event {
+  padding-left: 8px;
+}
 .console .line[highlight="true"] {
   -webkit-animation-name: none;
 }
@@ -357,23 +356,20 @@ body[type="server"] .event[type]:before {
 }
 body {
   font-family: 'Lucida Grande';
-  font-size: 9.3pt;
+  font-size: 12px;
 }
 .line {
   line-height: 1.7;
 }
 .time {
-  font-size: 7pt;
+  font-size: 9px;
 }
 .place {
-  font-size: 7.8pt;
+  font-size: 10.08px;
 }
 .sender {
   line-height: 1.4;
-  font-size: 7.8pt;
-}
-.message[type="notice"] {
-  font-size: 8.8pt;
+  font-size: 10.08px;
 }
 .url {
   text-decoration: none;
@@ -386,7 +382,7 @@ body {
   word-break: break-all;
 }
 .event {
-  font-size: 8pt;
+  font-size: 10.32px;
 }
 .highlight {
   font-weight: normal;
@@ -432,7 +428,7 @@ a {
   color: #d33682;
 }
 .place {
-  color: #586e75;
+  color: #839496;
 }
 .text .message {
   -webkit-box-shadow: 1px 1px 0px rgba(147, 161, 161, 0.4);
@@ -441,7 +437,6 @@ a {
   background-color: #fdf6e3;
 }
 .event[type] {
-  border-width: 0;
   background-color: #eee8d5;
   text-shadow: -1px -1px 0 rgba(253, 246, 227, 0.8);
 }

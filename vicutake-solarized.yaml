@@ -1,12 +1,12 @@
 ---
   log-view: 
-    nickname-format: "%n : "
+    nickname-format: "%n"
     timestamp-format: "%H:%M:%S"
     scroller-highlight-color: "#d33682"
   input-text: 
     font-family: "Lucida Grande"
     font-size: 13
-    background-colorfff: "#fdf6e3"
+    background-color: "#fdf6e3"
     color: "#657b83"
     selected: 
       background-color: "#eee8d5"

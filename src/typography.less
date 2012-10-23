@@ -8,22 +8,16 @@ body {
 }
 
 .time {
-  font-size: 7pt;
+  font-size: @baseFontSize * 0.75;
 }
 
 .place {
-  font-size: 7.8pt;
+  font-size: @baseFontSize * 0.84;
 }
 
 .sender {
   line-height: 1.4;
-  font-size: 7.8pt;
-}
-
-.message {
-  &[type="notice"] {
-    font-size: 8.8pt;
-  }
+  font-size: @baseFontSize * 0.84;
 }
 
 .url {
@@ -39,7 +33,7 @@ body {
 }
 
 .event {
-  font-size: 8pt;
+  font-size: @baseFontSize * 0.86;
 }
 
 .highlight {
